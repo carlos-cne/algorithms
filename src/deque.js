@@ -36,7 +36,16 @@ class Deque {
     return result;
   }
 
-  removeBack() {}
+  removeBack() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    const result = this.items[this.count - 1];
+    delete this.items[this.count - 1];
+    this.count--;
+
+    return result;
+  }
 
   peekFront() {
     if (this.isEmpty()) {
@@ -45,7 +54,12 @@ class Deque {
     return this.items[this.lowerstCount];
   }
 
-  peekBack() {}
+  peekBack() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    return this.items[this.count - 1];
+  }
 
   isEmpty() {
     return this.count - this.lowerstCount === 0;
