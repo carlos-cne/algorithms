@@ -30,9 +30,9 @@ class Deque {
     if (this.isEmpty()) {
       return undefined;
     }
-    const result = this.items[this.lowerstCount];
-    delete this.items[this.lowerstCount];
-    this.lowerstCount++;
+    const result = this.items[this.lowestCount];
+    delete this.items[this.lowestCount];
+    this.lowestCount++;
     return result;
   }
 
@@ -51,7 +51,7 @@ class Deque {
     if (this.isEmpty()) {
       return undefined;
     }
-    return this.items[this.lowerstCount];
+    return this.items[this.lowestCount];
   }
 
   peekBack() {
@@ -62,15 +62,15 @@ class Deque {
   }
 
   isEmpty() {
-    return this.count - this.lowerstCount === 0;
+    return this.count - this.lowestCount === 0;
   }
   size() {
-    return this.count - this.lowerstCount;
+    return this.count - this.lowestCount;
   }
 
   clear() {
     this.count = 0;
-    this.lowerstCount = 0;
+    this.lowestCount = 0;
     this.items = {};
   }
 
@@ -79,12 +79,39 @@ class Deque {
       return undefined;
     }
 
-    let objString = `${this.items[this.lowerstCount]}`;
+    let objString = `${this.items[this.lowestCount]}`;
 
-    for (let i = this.lowerstCount + 1; i < this.count; i++) {
+    for (let i = this.lowestCount + 1; i < this.count; i++) {
       objString = `${objString},${this.items[i]}`;
     }
 
     return objString;
   }
 }
+
+const deque = new Deque();
+
+console.log(deque.isEmpty());
+
+deque.addBack("John");
+deque.addBack("Jack");
+
+console.log(deque.toString());
+
+deque.addBack("Camila");
+
+console.log(deque.toString());
+
+console.log(deque.isEmpty());
+
+deque.removeFront();
+
+console.log(deque.toString());
+
+deque.removeBack();
+
+console.log(deque.toString());
+
+deque.addFront("John");
+
+console.log(deque.toString());
